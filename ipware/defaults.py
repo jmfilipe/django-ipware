@@ -1,12 +1,8 @@
-from django.conf import settings
-
-
 # Search for the real IP address in the following order
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For
 # X-Forwarded-For: <client>, <proxy1>, <proxy2>
 # Configurable via settings.py
-IPWARE_META_PRECEDENCE_ORDER = getattr(settings,
-    'IPWARE_META_PRECEDENCE_ORDER', (
+IPWARE_META_PRECEDENCE_ORDER = (
         'HTTP_X_FORWARDED_FOR', 'X_FORWARDED_FOR',
         'HTTP_CLIENT_IP',
         'HTTP_X_REAL_IP',
@@ -16,8 +12,8 @@ IPWARE_META_PRECEDENCE_ORDER = getattr(settings,
         'HTTP_FORWARDED',
         'HTTP_VIA',
         'REMOTE_ADDR',
-    )
 )
+
 
 # Private IP addresses
 # http://en.wikipedia.org/wiki/List_of_assigned_/8_IPv4_address_blocks
@@ -28,8 +24,7 @@ IPWARE_META_PRECEDENCE_ORDER = getattr(settings,
 # https://www.ietf.org/rfc/rfc6890.txt
 # Regex would be ideal here, but this is keeping it simple
 # Configurable via settings.py
-IPWARE_PRIVATE_IP_PREFIX = getattr(settings,
-    'IPWARE_PRIVATE_IP_PREFIX', (
+IPWARE_PRIVATE_IP_PREFIX = (
         '0.',  # messages to software
         '10.',  # class A private block
         '100.64.',  '100.65.',  '100.66.',  '100.67.',  '100.68.',  '100.69.',
@@ -67,8 +62,8 @@ IPWARE_PRIVATE_IP_PREFIX = getattr(settings,
         'fc00:',  # IPv6 private block
         'fe80:',  # link-local unicast
         'ff00:',  # IPv6 multicast
-    )
 )
+
 
 IPWARE_LOOPBACK_PREFIX = (
     '127.',  # IPv4 loopback device (Host)
